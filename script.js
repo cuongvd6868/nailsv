@@ -2,24 +2,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Revenue Chart
     const revenueCtx = document.getElementById('revenueChart').getContext('2d');
     const revenueChart = new Chart(revenueCtx, {
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'CN'],
             datasets: [{
-                label: 'Revenue (VND)',
-                data: [3200000, 4500000, 3800000, 5200000, 6100000, 7500000, 8200000],
-                backgroundColor: 'rgba(108, 92, 231, 0.1)',
+                label: 'Doanh thu (VND)',
+                data: [80000, 120000, 70000, 90000, 150000, 0, 0],
+                backgroundColor: 'rgba(108, 92, 231, 0.7)',
                 borderColor: 'rgba(108, 92, 231, 1)',
-                borderWidth: 2,
-                tension: 0.4,
-                fill: true
+                borderWidth: 1
             }]
         },
         options: {
             responsive: true,
             plugins: {
                 legend: {
-                    position: 'top',
+                    display: false
                 },
                 tooltip: {
                     callbacks: {
@@ -47,15 +45,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const bookingSourceChart = new Chart(bookingSourceCtx, {
         type: 'doughnut',
         data: {
-            labels: ['Website', 'Mobile App', 'Social Media', 'Referral', 'Others'],
+            labels: ['Website', 'Mạng xã hội'],
             datasets: [{
-                data: [45, 30, 15, 7, 3],
+                data: [30, 70],
                 backgroundColor: [
                     '#6c5ce7',
-                    '#00b894',
-                    '#fdcb6e',
-                    '#0984e3',
-                    '#d63031'
+                    '#00b894'
                 ],
                 borderWidth: 0
             }]
@@ -78,28 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Change revenue chart data based on period selection
-    document.getElementById('revenue-period').addEventListener('change', function() {
-        const period = this.value;
-        let labels, data;
-        
-        if (period === 'week') {
-            labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-            data = [1200000, 1500000, 1100000, 1800000, 2000000, 2500000, 2200000];
-        } else if (period === 'month') {
-            labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
-            data = [5200000, 6100000, 7500000, 8200000];
-        } else {
-            labels = ['Q1', 'Q2', 'Q3', 'Q4'];
-            data = [11500000, 18800000, 21000000, 27500000];
-        }
-        
-        revenueChart.data.labels = labels;
-        revenueChart.data.datasets[0].data = data;
-        revenueChart.update();
-    });
-
-    // Toggle sidebar on mobile (optional)
+    // Mobile sidebar toggle
     const sidebarToggle = document.createElement('div');
     sidebarToggle.className = 'sidebar-toggle';
     sidebarToggle.innerHTML = '<i class="fas fa-bars"></i>';
